@@ -52,16 +52,19 @@ def main():
                     print("\nThere isn't anything in that direction.\n")
                 else:
                     player.current_room = player.current_room.s_to
+                    print(f"You walk towards the {player.current_room.name}...")
             elif command == "e":
                 if player.current_room.e_to == None:
                     print("\nThere isn't anything in that direction.\n")
                 else:
                     player.current_room = player.current_room.e_to
+                    print(f"You walk towards the {player.current_room.name}...")
             elif command == "w":
                 if player.current_room.w_to == None:
                     print("\nThere isn't anything in that direction.\n")
                 else:
                     player.current_room = player.current_room.w_to
+                    print(f"You walk towards the {player.current_room.name}...")
         else:
             print("Sorry, that's not a valid command. Try: [n/s/e/w/q/quit]")
 
