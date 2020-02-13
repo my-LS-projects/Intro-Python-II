@@ -3,7 +3,11 @@
 
 
 class Player:
-    def __init__(self, name, items, room):
+    def __init__(self, name, current_room, items=[]):
         self.name = name
+        self.current_room = current_room
         self.items = items
-        self.room = room
+
+    def __str__(self):
+        return f"{self.name}, {self.current_room}"
+
