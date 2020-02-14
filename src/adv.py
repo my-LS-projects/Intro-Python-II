@@ -34,39 +34,36 @@ def main():
     while True:
         print("\nCurrent location: ", player.current_room.name)
         print(player.current_room.description)
+        print("\nITEMS: ")
+        for item in player.current_room.items:
+            print(f"{item}")
         command = input("\nWhat's the move? [n/s/e/w/take/drop]  ").lower()
 
         # check if valid command
         if command in commands:
-            if command == "q" or command == "quit":
-                print("See you next time.")
-                sys.exit()
-            elif command == "n":
-                if player.current_room.n_to == None:
-                    print("\nThere isn't anything in that direction.\n")
+
+            # quit
+            if command in commands[6:]:
+                verify = input("Are you sure you want to quit? ")
+                if verify == "y":
+                    print("See you next time.")
+                    sys.exit()
                 else:
-                    player.current_room = player.current_room.n_to
-                    print(f"You walk towards the {player.current_room.name}...")
-            elif command == "s":
-                if player.current_room.s_to == None:
-                    print("\nThere isn't anything in that direction.\n")
-                else:
-                    player.current_room = player.current_room.s_to
-                    print(f"You walk towards the {player.current_room.name}...")
-            elif command == "e":
-                if player.current_room.e_to == None:
-                    print("\nThere isn't anything in that direction.\n")
-                else:
-                    player.current_room = player.current_room.e_to
-                    print(f"You walk towards the {player.current_room.name}...")
-            elif command == "w":
-                if player.current_room.w_to == None:
-                    print("\nThere isn't anything in that direction.\n")
-                else:
-                    player.current_room = player.current_room.w_to
-                    print(f"You walk towards the {player.current_room.name}...")
+                    pass
+
+            # movement
+            elif command in commands[0:4]:
+                player.move(command)
+
+            # interact with items
+            elif command in commands[5:6]:
+                item = sys.argv[1]
+                print("ITEM: ", item)
+                if command == "take":
+                    player.yoink(item)
+
         else:
-            print("Sorry, that's not a valid command. Try: [n/s/e/w/q/quit]")
+            print("Sorry, that's not a valid command. Try: [n/s/e/w/take/drop/q/quit]")
 
 
 main()
