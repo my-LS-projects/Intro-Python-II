@@ -11,6 +11,6 @@ items = {
     "ultraboost_og": Item(
         "Ultraboost 1.0", "OG colorway with purple heelcup and gray/black knit upper."
     ),
-    "dog_treats": Item("Peanut Butter", "Bella's favorite snack"),
+    "dog_treats": Item("peanut_butter", "Bella's favorite snack"),
     "2080ti": Item("GTX 2080ti", "Unlimited fps"),
 }

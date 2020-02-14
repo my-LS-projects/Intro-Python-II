@@ -3,7 +3,7 @@
 
 
 class Player:
-    def __init__(self, name, current_room, inventory=[]):
+    def __init__(self, name, current_room, inventory={}):
         self.name = name
         self.current_room = current_room
         self.inventory = inventory
@@ -18,7 +18,27 @@ class Player:
             print(f"You walk towards the {next_room.name}...")
 
     def yoink(self, item):
-        item = getattr(self.current_room.items, f"{item}")
+        # check if item exists
+        try:
+            room_item = self.current_room.items[item]
+            del self.current_room.items[item]
+
+        except KeyError:
+            print("Sorry, that item is not in the room.")
+            return
+
+        self.inventory[item] = room_item
+        print(f"INVENTORY: ")
+        for item in self.inventory:
+            print(item)
 
     def drop(self, item):
-        item = getattr(self.inventory, f"{item}")
+        try:
+            player_item = self.inventory[item]
+            del self.inventory[item]
+
+        except KeyError:
+            print("You don't have that in your inventory.")
+            return
+
+        self.current_room.items[item] = player_item
